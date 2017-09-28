@@ -3,7 +3,7 @@
 #include "../protocols.h"
 #include <inttypes.h>
 
-#define PLUGIN_BUFFER_SIZE 50
+#define PLUGIN_BUFFER_SIZE 500
 
 union plugin_arg_val
 {
