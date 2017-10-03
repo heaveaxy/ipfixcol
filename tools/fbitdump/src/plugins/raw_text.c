@@ -26,12 +26,9 @@ void format(const plugin_arg_t *arg, int plain_numbers, char buffer[PLUGIN_BUFFE
 		snprintf(buffer, 6, "WARN!\0");
 		return;
 	} else {
-		fprintf(stderr, "2");
 		buf_size = arg->val[0].blob.length;
 	}
 	strncpy(text, arg->val[0].blob.ptr, buf_size);
-
-	fprintf(stderr, "3");
 
 	// check for non-printable characters exists
 	int i = 0;
