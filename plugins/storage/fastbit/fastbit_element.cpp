@@ -331,7 +331,7 @@ int el_text::flush(std::string path)
 	size_t check;
 
 	/* Flush sp buffer */
-	if (_config->create_sp_files && _filled > 0 && _sp_buffer != NULL) {
+	if (_config->create_sp_files && (_sp_buffer_offset > 0 || _filled > 0) && _sp_buffer != NULL) {
 		f = fopen((path + "/" + _name + ".sp").c_str(), "a+");
 		if (f == NULL) {
 			MSG_ERROR(msg_module, "Error while writing data (fopen)");
@@ -507,8 +507,8 @@ int el_blob::flush(std::string path)
 {
 	FILE *f;
 	size_t check;
-	
-	if (_filled > 0 && _sp_buffer != NULL) {
+
+	if ( (_sp_buffer_offset > 0 || _filled > 0) && _sp_buffer != NULL) {
 		f = fopen((path + "/" + _name + ".sp").c_str(), "a+");
 		if (f == NULL) {
 			MSG_ERROR(msg_module, "Error while writing data (fopen)");
