@@ -16,7 +16,7 @@ static char *htypes[] = {
 
 char *info()
 {
-	return "Decodes vendor-specific (vas experts) 'Host Type' field.";
+	return "Decodes vendor-specific (VAS Experts) 'Host Type' field.";
 }
 
 //int init(const char *params, void **conf);

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="fbitdump.xsd">
-<!-- 
+<!--
 	This is configuration XML for fbitdump utility
-	
+
 	The rules for printing columns are defined here. Each column has one column element which contains:
 		name: Name of the column
 		width: Width of the column, default is 0
@@ -11,18 +11,18 @@
 		default-value: Defines what to show when table does not have this column
 		value: Defines where to get actual value
 			value can be of several types:
-				plain: just take specified element value for input. Value can be entered as fastbit 
+				plain: just take specified element value for input. Value can be entered as fastbit
 					   column name or 'alias' to plain type
 				operation: takes 'arg1' and 'arg2' and performs operation with name from attribute 'name', which
 							is one of '+', '-', '/', '*'
 							   Operation arguments can be only of plain and operation types and alias to plain type must be used
-							   Currently operations are working with integers up to uint64 (int64 is converted to uint64). 
+							   Currently operations are working with integers up to uint64 (int64 is converted to uint64).
 			elements under <value type="plain"> have attribute 'parts'. This specifies to how many columns in database
-				is this element splitted.  
+				is this element splitted.
 			elements under <value type="plain"> have attribute 'semantics'. There are several pre-defined
 				options to format ouput columns: as
 				'ipv4'   : expects uint32 column and prints it as IPv4 address
-				'ipv6'   : expects uint64 column and prints it as IPv6 address. 'parts' attribute must be set to 2 
+				'ipv6'   : expects uint64 column and prints it as IPv6 address. 'parts' attribute must be set to 2
 				'tmstmp64': expects uint64 column (miliseconds since 1970) and prints it as timestamp
 				'tmstmp32': expects uint32 column (seconds since 1970) and prints it as timestamp
 				'tcpflags' : expects uint8 column and print it as TCP flags
@@ -32,8 +32,8 @@
 				'duration': formats miliseconds as seconds with precision 3.
 			elements under <value type="plain"> have attribute 'aggregation'. This determines how the columns is
 				aggregated. If attribute is empty, column is not aggregated. Supported values are: 'min', 'max', 'sum', 'avg', 'count'
-				
-				
+
+
 	Examples are shown below
  -->
 <columns>
@@ -1536,6 +1536,137 @@
 			<element semantics="mac">e0id80</element>
 		</value>
 	</column>
+
+
+
+	<column>
+		<name>Session ID</name>
+		<alias>%vasexp_sessid</alias>
+		<width>22</width>
+		<value type="plain">
+			<element semantics="raw_int64">e43823id2000</element>
+		</value>
+	</column>
+	<column>
+		<name>HTTP Host</name>
+		<alias>%vasexp_httphost</alias>
+		<width>50</width>
+		<value type="plain">
+			<element semantics="raw_text">e43823id2001</element>
+		</value>
+	</column>
+	<column>
+		<name>DPI Protocol</name>
+		<alias>%vasexp_dpiproto</alias>
+		<width>7</width>
+		<value type="plain">
+			<element semantics="raw_int16">e43823id2002</element>
+		</value>
+	</column>
+	<column>
+		<name>RADIUS Login</name>
+		<alias>%vasexp_radlogin</alias>
+		<width>30</width>
+		<value type="plain">
+			<element semantics="raw_text">e43823id2003</element>
+		</value>
+	</column>
+	<column>
+		<name>Timestamp</name>
+		<alias>%vasexp_tmstmp</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="tmstmp32">e43823id1001</element>
+		</value>
+	</column>
+	<column>
+		<name>Login</name>
+		<alias>%vasexp_login</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="raw_text">e43823id1002</element>
+		</value>
+	</column>
+	<column>
+		<name>Source IP</name>
+		<alias>%vasexp_srcip</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="ipv4">e43823id1003</element>
+		</value>
+	</column>
+	<column>
+		<name>Destination IP</name>
+		<alias>%vasexp_dstip</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="ipv4">e43823id1004</element>
+		</value>
+	</column>
+	<column>
+		<name>Hostname/CName/SNI</name>
+		<alias>%vasexp_hostname</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="raw_text">e43823id1005</element>
+		</value>
+	</column>
+	<column>
+		<name>Path</name>
+		<alias>%vasexp_path</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="raw_text">e43823id1006</element>
+		</value>
+	</column>
+	<column>
+		<name>Refer</name>
+		<alias>%vasexp_refer</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="raw_text">e43823id1007</element>
+		</value>
+	</column>
+	<column>
+		<name>User Agent</name>
+		<alias>%vasexp_useragent</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="raw_text">e43823id1008</element>
+		</value>
+	</column>
+	<column>
+		<name>Cookie</name>
+		<alias>%vasexp_cookie</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="raw_text">e43823id1009</element>
+		</value>
+	</column>
+	<column>
+		<name>Locked</name>
+		<alias>%vasexp_locked</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="skat_locked">e43823id1010</element>
+		</value>
+	</column>
+	<column>
+		<name>Hostname Type</name>
+		<alias>%vasexp_hostnametype</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="skat_hosttype">e43823id1011</element>
+		</value>
+	</column>
+	<column>
+		<name>Method</name>
+		<alias>%vasexp_method</alias>
+		<width>1</width>
+		<value type="plain">
+			<element semantics="skat_method">e43823id1012</element>
+		</value>
+	</column>
 </columns>
 
 <groups>
@@ -1631,7 +1762,6 @@
 		<formatName>tun2</formatName>
 		<formatString>%ts;%td;%pr;%sa4;%sp;%da4;%dp;%flg;%pkt;%byt;%fl;%tunsa6;%tunsp;%tunda6;%tundp;%tunproto;%tuntype;%tunflags;%tunicmp;%tunhdrs;%tuntrls;%tunsctry;%tundctry;%tunosctry;%tunodctry;%tunhop;%ttl</formatString>
 	</format>
-
 	<format>
 		<formatName>app</formatName>
 		<formatString>%ts %td %pr %sa4:%sp -> %da4:%dp %flg %pkt %byt %fl %appname %apppid %appuid %appmatch</formatString>
@@ -1728,6 +1858,14 @@
 		<formatName>rtp6</formatName>
 		<formatString>%ts %td %pr %sp %dp %sa6 %da6 %voiptype %rtpcodec %rtpjitter %rtcplost %rtcppackets %rtcpsrccnt</formatString>
 	</format>
+	<format>
+		<formatName>vasexp_ipfix</formatName>
+		<formatString>%byt	%pkt	%pr	%tos	%srcip4:%srcport	%dstip4:%dstport	%sas	%das	%ts	%te	%in	%out	%ipv	%vasexp_sessid	%vasexp_httphost	%vasexp_dpiproto	%vasexp_radlogin</formatString>
+	</format>
+	<format>
+		<formatName>vasexp_clickstream</formatName>
+		<formatString>%vasexp_tmstmp	%vasexp_login	%vasexp_srcip	%vasexp_dstip	%vasexp_hostname	%vasexp_path	%vasexp_refer	%vasexp_useragent	%vasexp_cookie	%vasexp_hostnametype	%vasexp_method	%vasexp_locked</formatString>
+	</format>
 </output>
 <plugins>
 	<plugin>
@@ -1794,6 +1932,36 @@
 		<name>multiplier</name>
 		<path>@pkgdatadir@/plugins/multiplier.so</path>
 		<plainLevel>10</plainLevel>
+	</plugin>
+	<plugin>
+		<name>raw_text</name>
+		<path>@pkgdatadir@/plugins/raw_text.so</path>
+		<plainLevel>1</plainLevel>
+	</plugin>
+	<plugin>
+		<name>raw_uint16</name>
+		<path>@pkgdatadir@/plugins/raw_uint16.so</path>
+		<plainLevel>1</plainLevel>
+	</plugin>
+	<plugin>
+		<name>raw_uint64</name>
+		<path>@pkgdatadir@/plugins/raw_uint64.so</path>
+		<plainLevel>1</plainLevel>
+	</plugin>
+	<plugin>
+		<name>vasexp_hosttype</name>
+		<path>@pkgdatadir@/plugins/vasexp_hosttype.so</path>
+		<plainLevel>1</plainLevel>
+	</plugin>
+	<plugin>
+		<name>vasexp_locked</name>
+		<path>@pkgdatadir@/plugins/vasexp_locked.so</path>
+		<plainLevel>1</plainLevel>
+	</plugin>
+	<plugin>
+		<name>vasexp_method</name>
+		<path>@pkgdatadir@/plugins/vasexp_method.so</path>
+		<plainLevel>1</plainLevel>
 	</plugin>
 </plugins>
 </configuration>

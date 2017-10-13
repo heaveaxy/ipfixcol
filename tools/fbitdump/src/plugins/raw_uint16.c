@@ -5,7 +5,7 @@
 
 char *info()
 {
-	return "Outputs raw numeric values of unsigned int 16-byte data type";
+	return "Outputs raw unsigned int 16-byte values.";
 }
 
 int init(const char *params, void **conf);

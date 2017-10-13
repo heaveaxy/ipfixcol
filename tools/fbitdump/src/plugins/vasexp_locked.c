@@ -12,7 +12,7 @@ static char* lstate[] = {
 
 char *info()
 {
-	return "Decodes vendor-specific (vas experts) 'Locked' field.";
+	return "Decodes vendor-specific (VAS Experts) 'Locked' field.";
 }
 
 //int init(const char *params, void **conf);
